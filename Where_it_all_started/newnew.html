@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clothing Website</title>
+</head>
+<body>
+  <header>
+    <h1>Welcome to our Clothing Website</h1>
+    <nav>
+      <ul>
+        <li><a href="#new-arrivals">New Arrivals</a></li>
+        <li><a href="#best-sellers">Best Sellers</a></li>
+        <li><a href="#sale">Sale</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="new-arrivals">
+      <h2>New Arrivals</h2>
+      <ul id="new-arrivals-list">
+      </ul>
+    </section>
+    <section id="best-sellers">
+      <h2>Best Sellers</h2>
+      <ul id="best-sellers-list">
+      </ul>
+    </section>
+    <section id="sale">
+      <h2>Sale</h2>
+      <ul id="sale-list">
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>Copyright 2021 Clothing Website</p>
+  </footer>
+  <script>
+    // Define an array of clothing items
+    const items = [
+      { name: "Dress", price: 50, image: "dress.jpg" },
+      { name: "Shirt", price: 30, image: "shirt.jpg" },
+      { name: "Jeans", price: 40, image: "jeans.jpg" },
+      { name: "Jacket", price: 60, image: "jacket.jpg" },
+      { name: "Skirt", price: 25, image: "skirt.jpg" },
+      { name: "Sweater", price: 35, image: "sweater.jpg" }
+    ];
+
+    // Function to generate HTML for a single item
+    function generateItemHTML(item) {
+      return `
+        <li>
+          <img src="${item.image}" alt="${item.name}">
+          <h3>${item.name}</h3>
+          <p>$${item.price}</p>
+          <button>Add to Cart</button>
+        </li>
+      `;
+    }
+
+    // Function to add items to a list
+    function addItemsToList(listId, items) {
+      const listElement = document.getElementById(listId);
+      items.forEach(item => {
+        listElement.innerHTML += generateItemHTML(item);
+      });
+    }
+
+    // Add items to each list
+    addItemsToList("new-arrivals-list", items);
+    addItemsToList("best-sellers-list", items.slice(0, 2));
+    addItemsToList("sale-list", items.slice(4, 6));
+  </script>
+</body>
+</html>
